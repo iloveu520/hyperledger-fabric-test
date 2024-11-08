@@ -18,38 +18,33 @@ jobs:
       - name: Set up Docker
         uses: docker/setup-buildx-action@v3
       
-      # Step 3: Download Hyperledger Fabric binaries and Docker images
-      - name: Download Hyperledger Fabric binaries
+      # Step 3: Download Hyperledger Fabric samples and binaries
+      - name: Download Hyperledger Fabric samples
         run: |
           curl -sSL https://bit.ly/2ysbOFE | bash -s
-        shell: bash
-
-      # Step 4: Set up Hyperledger Fabric network
-      - name: Set up Hyperledger Fabric network
-        run: |
-          cd test-network
+          cd fabric-samples/test-network
           ./network.sh up createChannel -c mychannel -ca
         shell: bash
 
-      # Step 5: Deploy chaincode
+      # Step 4: Deploy chaincode
       - name: Deploy chaincode
         run: |
-          cd test-network
-          ./network.sh deployCC -ccn basic -ccp ../chaincode/asset-transfer-basic/javascript -ccl javascript
+          cd fabric-samples/test-network
+          ./network.sh deployCC -ccn basic -ccp ../../chaincode/asset-transfer-basic/javascript -ccl javascript
         shell: bash
 
-      # Step 6: Install Node.js
+      # Step 5: Install Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '14'
 
-      # Step 7: Install dependencies
+      # Step 6: Install dependencies
       - name: Install dependencies
         run: npm install
         working-directory: chaincode/asset-transfer-basic
 
-      # Step 8: Run tests
+      # Step 7: Run tests
       - name: Run tests
         run: npm test
         working-directory: chaincode/asset-transfer-basic
