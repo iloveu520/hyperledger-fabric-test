@@ -1,0 +1,17 @@
+{
+    "name": "asset-transfer-basic",
+    "version": "1.0.0",
+    "description": "Basic asset transfer chaincode",
+    "main": "index.js",
+    "scripts": {
+        "test": "mocha --timeout 10000"
+    },
+    "dependencies": {
+        "fabric-contract-api": "^2.5.7"
+    },
+    "devDependencies": {
+        "mocha": "^9.0.0",
+        "chai": "^4.3.4",
+        "@theledger/fabric-mock-stub": "^1.0.0"
+    }
+}
