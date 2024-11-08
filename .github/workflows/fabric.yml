@@ -33,7 +33,7 @@ jobs:
           ./network.sh deployCC -ccn basic -ccp ../../chaincode/asset-transfer-basic/javascript -ccl javascript
         shell: bash
 
-      # Step 5: Install Node.js
+      # Step 5: Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
